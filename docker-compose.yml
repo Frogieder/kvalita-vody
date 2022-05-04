@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  influx:
+    image: influxdb:latest
+    ports:
+      - "8086:8086"
+    volumes:
+      - "influx-db:/var/lib/influxdb2"
+    restart: always
+  grafana:
+    image: grafana/grafana-oss:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - "grafana-db:/var/lib/grafana"
+      - "./grafana_config.ini:/etc/grafana/grafana.ini"
+    restart: always
+volumes:
+  influx-db:
+  grafana-db:
