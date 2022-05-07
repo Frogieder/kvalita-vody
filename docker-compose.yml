@@ -15,6 +15,12 @@ services:
       - "grafana-db:/var/lib/grafana"
       - "./grafana_config.ini:/etc/grafana/grafana.ini"
     restart: always
+  web_server:
+    build: ./web_server
+    volumes:
+      - "./web_server:/usr/src/app"
+    ports:
+      - "5001:5001"
 volumes:
   influx-db:
   grafana-db:
