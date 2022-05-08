@@ -1,0 +1,104 @@
+#! /usr/local/bin/python
+
+"""
+Iframes in the web page cannot be determined in advance. This script is
+made to change iframes' URLs to what the user needs
+
+
+"""
+from json import load as json_load
+from json import dump as json_dump
+from os import path as os_path
+from urllib.parse import urlparse
+
+# sone constants
+JSON_PATH = "/usr/src/app/iframe_links.json"
+KEYS = ["orp", "ph", "clarity", "temperature", "oxygen"]
+
+def is_url(url: str) -> bool:
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
+
+# Return string representation of a dictionary 
+# with one key: value combination per line
+def fancy_print_dict(dictionary: dict) -> str:
+    return "\n".join([f"{i + 1}) {key}: {dictionary[key]}" for i, key in enumerate(KEYS)])
+
+# Load links from json file
+loaded_links = {}
+if os_path.isfile(JSON_PATH):
+    with open(JSON_PATH, "r", encoding ='utf8') as json_file:
+        loaded_links = json_load(json_file)
+
+# Check url validity and fix any errors
+current_config = {}
+for key in KEYS:
+    if is_url(loaded_links.get(key, "THIS AIN'T NO URL, BRO")):
+        current_config[key] = loaded_links[key]
+    else:
+        current_config[key] = "https://streamable.com/e/shil2"
+
+original_config = current_config.copy()
+
+print(f"""Welcome to this little setup script""")
+
+while True:
+    # Print current configuration
+    print(f"""
+Current configuration:
+{fancy_print_dict(current_config)}
+
+Enter the number which you'd like to modify [{",".join([str(i + 1) for i in range(len(KEYS))])},q] """, end="")
+    # Find which url should be changed
+    end = False
+    while True:
+        i_modified = input().strip()
+        if i_modified.lower() == "q":
+            end = True
+            break
+        try:
+            i_modified = int(i_modified) - 1
+            if not i_modified in range(len(KEYS)):
+                raise ValueError("This exception should get caught")
+            break
+        except ValueError:
+            print(f"Please enter a valid number [{','.join([str(i + 1) for i in range(len(KEYS))])},q]", end="")
+            continue
+    if end:
+        break
+
+    # Ask for new URL
+    while True:
+        new_link = input("New link to use: ").strip()
+        if is_url(new_link):
+            current_config[KEYS[i_modified]] = new_link
+            break
+        else:
+            if new_link == "q":
+                break
+            print("Please, enter a valid url")
+            continue
+
+
+print("Configuring complete.\n\nChanges:")
+# Exit if there weren't any changes
+if original_config == current_config:
+    print("None\n\nExiting")
+    exit(0)
+# Compare the old and new configuration
+for key in KEYS:
+    if original_config[key] == current_config[key]:
+        print(f"[Unchanged] {key}: {original_config[key]}")
+    else:
+        print(f"[!CHANGED!] {key}: {original_config[key]} --> {current_config[key]}")
+
+# Ask if the new config should be used
+if input("\nDo you want to save the new configuration? [Y/n] ").strip()[0].lower() == "n":
+    print("Configuration discarded")
+else:
+    print(f'Writing new configuration to "{JSON_PATH}"')
+    with open(JSON_PATH, "w", encoding ='utf8') as file:
+        json_dump(current_config, file)

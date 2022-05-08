@@ -1,2 +1,4 @@
 helper_code/*
 .idea/
+*.pyc
+web_server/iframe_links.json
