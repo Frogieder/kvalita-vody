@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 from json import dump as json_dump
 from json import load as json_load
 
-JSON_PATH = "/usr/src/app/iframe_links.json"
+JSON_PATH = "/usr/src/app/data/iframe_links.json"
 # JSON_PATH = "iframe_links.json"
 
 ## Load the links for the iframe, create the required file if necessary 

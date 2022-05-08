@@ -12,7 +12,7 @@ from os import path as os_path
 from urllib.parse import urlparse
 
 # sone constants
-JSON_PATH = "/usr/src/app/iframe_links.json"
+JSON_PATH = "/usr/src/app/data/iframe_links.json"
 KEYS = ["orp", "ph", "clarity", "temperature", "oxygen"]
 
 def is_url(url: str) -> bool:
