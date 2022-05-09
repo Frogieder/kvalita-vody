@@ -1,3 +1,5 @@
 helper_code/*
 .idea/
 notes.txt
+*.pyc
+web_server/iframe_links.json
