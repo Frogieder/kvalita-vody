@@ -8,5 +8,6 @@ WORKDIR /usr/src/app
 #RUN apk add --no-cache bash coreutils grep sed
 
 RUN pip install --no-cache-dir -U flask waitress
+RUN chmod +x /usr/local/bin/set_iframes
 ENTRYPOINT ["python"]
-CMD ["app.py"]
+CMD ["-u", "app.py"]

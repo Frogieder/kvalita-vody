@@ -3,9 +3,18 @@ import os
 from urllib.parse import urlparse
 from json import dump as json_dump
 from json import load as json_load
+from json.decoder import JSONDecodeError
 
 JSON_PATH = "/usr/src/app/data/iframe_links.json"
 # JSON_PATH = "iframe_links.json"
+
+DEFAULT_DICTIONARY = dict(
+    orp="https://streamable.com/e/shil2",
+    ph="https://streamable.com/e/shil2",
+    clarity="https://streamable.com/e/shil2",
+    temperature="https://streamable.com/e/shil2",
+    oxygen="https://streamable.com/e/shil2"
+)
 
 ## Load the links for the iframe, create the required file if necessary 
 if not os.path.isfile(JSON_PATH):
@@ -17,16 +26,12 @@ if not os.path.isfile(JSON_PATH):
             temperature="https://streamable.com/e/shil2",
             oxygen="https://streamable.com/e/shil2"
         ), file)
-
-with open(JSON_PATH, "r") as file:
-    # iframe_links = json_load(file)
-    iframe_links = dict(
-            orp="https://streamable.com/e/shil2",
-            ph="https://streamable.com/e/shil2",
-            clarity="https://streamable.com/e/shil2",
-            temperature="https://streamable.com/e/shil2",
-            oxygen="https://streamable.com/e/shil2"
-        )
+try:
+    with open(JSON_PATH, "r") as file:
+        iframe_links = json_load(file)
+except JSONDecodeError:
+    print("Problem decoding json file")
+    iframe_links = DEFAULT_DICTIONARY
 
 iframes = [{"name":name, "url":iframe_links[name]} for name in iframe_links]
 

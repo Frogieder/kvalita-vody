@@ -3,8 +3,13 @@
 """
 Iframes in the web page cannot be determined in advance. This script is
 made to change iframes' URLs to what the user needs
+You can run this script using the following command:
+$ docker exec -ti voda-web_server-1 set_iframes
 
-
+Then, to apply the changes, you'll need to restart the server
+$ docker container restart voda-web_server-1
+(This command may take over 10 seconds to run wihout giving any
+output - that's okay)
 """
 from json import load as json_load
 from json import dump as json_dump
@@ -30,8 +35,11 @@ def fancy_print_dict(dictionary: dict) -> str:
 # Load links from json file
 loaded_links = {}
 if os_path.isfile(JSON_PATH):
-    with open(JSON_PATH, "r", encoding ='utf8') as json_file:
-        loaded_links = json_load(json_file)
+    try:
+        with open(JSON_PATH, "r", encoding ='utf8') as json_file:
+            loaded_links = json_load(json_file)
+    except JSONDecodeError:
+        print("Problem decoding json file")
 
 # Check url validity and fix any errors
 current_config = {}
@@ -40,6 +48,10 @@ for key in KEYS:
         current_config[key] = loaded_links[key]
     else:
         current_config[key] = "https://streamable.com/e/shil2"
+
+for key in current_config:
+    if key not in KEYS:
+        print(f"""Unknown key: "{key}" - ignoring""")
 
 original_config = current_config.copy()
 
