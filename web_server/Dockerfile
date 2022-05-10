@@ -2,6 +2,7 @@ FROM python:3.10.4-alpine3.15
 COPY app.py /usr/src/app/app.py
 COPY set_iframes /usr/local/bin
 COPY templates /usr/src/app/templates
+COPY static /usr/src/app/static
 WORKDIR /usr/src/app
 
 # for debugging only - REMOVE (or at least comment out) for deployment
