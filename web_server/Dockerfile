@@ -9,6 +9,6 @@ WORKDIR /usr/src/app
 
 RUN pip install --no-cache-dir -U flask waitress
 RUN chmod +x /usr/local/bin/set_iframes
-RUN mkdir /usr/src/app/data/iframe_links.json
+RUN mkdir /usr/src/app/data
 ENTRYPOINT ["python"]
 CMD ["-u", "app.py"]
