@@ -2,5 +2,5 @@
 
 ## Building and running
 ```
-$ docker-compose up --build
+$ ./start_server.sh
 ```
