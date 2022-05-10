@@ -4,10 +4,10 @@
 Iframes in the web page cannot be determined in advance. This script is
 made to change iframes' URLs to what the user needs
 You can run this script using the following command:
-$ docker exec -ti voda-web_server-1 set_iframes
+$ docker exec -ti kvalita-vody-web_server-1 set_iframes
 
 Then, to apply the changes, you'll need to restart the server
-$ docker container restart voda-web_server-1
+$ docker container restart kvalita-vody-web_server-1
 (This command may take over 10 seconds to run wihout giving any
 output - that's okay)
 """
