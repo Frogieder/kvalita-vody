@@ -114,3 +114,6 @@ else:
     print(f'Writing new configuration to "{JSON_PATH}"')
     with open(JSON_PATH, "w", encoding ='utf8') as file:
         json_dump(current_config, file)
+    print("Writing done")
+    print("To apply the new config, run \"docker compose restart\" in the directory, where the docker-compose.yml is "
+          "located")
