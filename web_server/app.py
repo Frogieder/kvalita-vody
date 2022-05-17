@@ -40,6 +40,6 @@ def homepaeg(): # Not a typo
 
 if __name__ == "__main__":
     # app.run(host="0.0.0.0", port=5001)
-    print("WSGI server running at 0.0.0.0:5001")
+    print("WSGI server running at http://localhost:5001")
     from waitress import serve
     serve(app, host="0.0.0.0", port=5001)
