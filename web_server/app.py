@@ -13,10 +13,10 @@ DEFAULT_DICTIONARY = dict(
     ph="https://streamable.com/e/shil2",
     clarity="https://streamable.com/e/shil2",
     temperature="https://streamable.com/e/shil2",
-    oxygen="https://streamable.com/e/shil2"
+    oxygen="https://streamable.com/e/shil2",
 )
 
-## Load the links for the iframe, create the required file if necessary 
+# Load the links for the iframe, create the required file if necessary
 if not os.path.isfile(JSON_PATH):
     with open(JSON_PATH, "w") as file:
         json_dump(DEFAULT_DICTIONARY, file)
@@ -27,14 +27,14 @@ except JSONDecodeError:
     print("Problem decoding json file")
     iframe_links = DEFAULT_DICTIONARY
 
-iframes = [{"name":name, "url":iframe_links[name]} for name in iframe_links]
+iframes = [{"name": name, "url": iframe_links[name]} for name in iframe_links]
 
 # Create the web server
 app = Flask(__name__)
 
 
 @app.route("/")
-def homepaeg(): # Not a typo
+def homepaeg():  # Not a typo
     return render_template("index.html", iframes=iframes)
 
 
