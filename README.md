@@ -34,6 +34,8 @@ After creating all pannels, make sure to save your dashboard.
 To get a link to your pannel, go to your dashboard, click on your pannel's name and choose share.
 From there, click embed. You'll see an HTML tag `<iframe>`with some parameters.
 Copy the link in `src="https://www.example.com/something"`. Don't copy the quotes, only copy the link.
+Also, in the link, remove the part which says `&from=123456789&to=123456789`.
+If left it, it will cause the time range to remain static, which is not the desired effect.
 
 You'll need the link for the following part.
 
