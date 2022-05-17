@@ -1,9 +1,9 @@
-from flask import Flask, render_template, request, redirect
 import os
-from urllib.parse import urlparse
 from json import dump as json_dump
 from json import load as json_load
 from json.decoder import JSONDecodeError
+
+from flask import Flask, render_template
 
 JSON_PATH = "/usr/src/app/data/iframe_links.json"
 # JSON_PATH = "iframe_links.json"
