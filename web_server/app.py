@@ -19,13 +19,7 @@ DEFAULT_DICTIONARY = dict(
 ## Load the links for the iframe, create the required file if necessary 
 if not os.path.isfile(JSON_PATH):
     with open(JSON_PATH, "w") as file:
-        json_dump(dict(
-            orp="https://streamable.com/e/shil2",
-            ph="https://streamable.com/e/shil2",
-            clarity="https://streamable.com/e/shil2",
-            temperature="https://streamable.com/e/shil2",
-            oxygen="https://streamable.com/e/shil2"
-        ), file)
+        json_dump(DEFAULT_DICTIONARY, file)
 try:
     with open(JSON_PATH, "r") as file:
         iframe_links = json_load(file)
