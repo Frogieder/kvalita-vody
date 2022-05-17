@@ -1,16 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- ===================== -->
+    <!-- ====== Browser ====== -->
+    <!-- ===================== -->
+
+    <!-- Charset -->
+    <meta charset="utf-8">
+
+    <!-- Style Sheets -->
+    <link rel="stylesheet" type="text/css" href="/static/styles/style.css">
+
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
     <title>Kvalita vody</title>
-    <h1>Kvalita vody</h1>
+
+    <!-- Description -->
+    <meta name="description" content="Vizualizácia nameraných dát kvality vody">
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#509567">
+    <meta name="msapplication-TileColor" content="#509567">
+    <meta name="msapplication-navbutton-color" content="#509567">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#509567">
+
+    <!-- ===================== -->
+    <!-- ===== OpenGraph ===== -->
+    <!-- ===================== -->
+
+    <!-- Title -->
+    <meta property="og:title" content="Kvalita vody">
+
+    <!-- Description -->
+    <meta property="og:description" content="Vizualizácia nameraných dát kvality vody">
+
+    <!-- Type, Locale -->
+    <meta property="og:type" content="page">
+    <meta property="og:locale" content="sk_SK">
+
+    <!-- ===================== -->
+    <!-- ====== Twitter ====== -->
+    <!-- ===================== -->
+
+    <!-- Title -->
+    <meta property="twitter:title" content="Kvalita vody">
+
+    <!-- Description -->
+    <meta property="twitter:description" content="Vizualizácia nameraných dát kvality vody">
 </head>
-<body>
-    {% for frame in iframes %}
-        <h3>{{ frame.name }}</h3>
-        <iframe src="{{ frame.url }}" width="450" height="200" frameborder="0"></iframe>
-    {% endfor %}
+
+<body class="bg-gradient-to-b from-[#509567] to-[#516395] pt-5 text-slate-300">
+    <div class="flex flex-col items-center">
+        <h1 class="text-2xl font-bold">Kvalita vody</h1>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5 p-5">
+        {% for frame in iframes %}
+        <div class="h-[45vh] rounded-md p-5 bg-slate-700">
+            <iframe class="w-full h-full" src="{{ frame.url }}"></iframe>
+        </div>
+        {% endfor %}
+    </div>
 </body>
+
 </html>

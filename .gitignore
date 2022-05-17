@@ -3,3 +3,5 @@ helper_code/*
 notes.txt
 *.pyc
 web_server/iframe_links.json
+node_modules/
+web_server/static/styles/style.css
