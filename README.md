@@ -3,12 +3,6 @@
 Everyting runs inside docker containers - all you need is to run `start_server.sh` and it'll start.
 You'll need to configure Grafana and InfluxDB manually.
 The section below may help you with it
-### Configuring InfluxDB
-TODO
-
-For now, you can try it on your own - it's not that hard.
-Just make sure your bucket has some reasonable data retention.
-You'll also need to generate an acces token
 
 ### Configuring Grafana
 Firstly, you'll need to configure a new data source - InfluxDB. 
@@ -50,3 +44,10 @@ Choose which link to modify and then paste the corresponding link.
 When you're done, instead of entering the number, type `q` and then `y`.
 
 Lastly, restart the container by running `docker compose restart` in the directory where `docker-compose.yml is located.
+
+### Configuring InfluxDB
+TODO
+
+For now, you can try it on your own - it's not that hard.
+Just make sure your bucket has some reasonable data retention.
+You'll also need to generate an acces token
